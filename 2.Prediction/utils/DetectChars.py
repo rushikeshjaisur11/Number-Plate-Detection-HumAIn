@@ -63,8 +63,6 @@ def detectCharsInPlates(listOfPossiblePlates):
             # at this point we can be sure the list of possible plates has at least one plate
     listOfPossiblePlates_refined = []
     for possiblePlate in listOfPossiblePlates:          # for each possible plate, this is a big for loop that takes up most of the function
-        #possiblePlate.imgPlate = cv2.fastNlMeansDenoisingColored(possiblePlate.imgPlate,None,15,15,7,21)
-        #possiblePlate.imgPlate = cv2.equalizeHist(possiblePlate.imgPlate)
         possiblePlate.imgGrayscale, possiblePlate.imgThresh = utils.Preprocess.preprocess(possiblePlate.imgPlate)     # preprocess to get grayscale and threshold images
 
             
@@ -372,19 +370,10 @@ def recognizeCharsInPlate(imgThresh, listOfMatchingChars):
 
     height, width = imgThresh.shape
     imgThreshColor = np.zeros((height, width, 3), np.uint8)
-    #imgThresh = cv2.cvtColor(imgThresh, cv2.COLOR_BGR2HSV)
-    #imgHue, imgSaturation, imgThresh = cv2.split(imgHSV)
-    #cv2.threshold(possiblePlate.imgThresh, 0.0, 255.0, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-    #imgThreshColor = imgThresh.copy()
-    #imgThreshColor = cv2.resize(imgThreshColor, (0, 0), fx = 1.6, fy = 1.6)
+    
     thresholdValue, imgThresh = cv2.threshold(imgThresh, 0.0, 255.0, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-    #imgThresh = cv2.fastNlMeansDenoising(imgThresh,None,10,10,7,21)
     cv2.cvtColor(imgThresh, cv2.COLOR_GRAY2BGR, imgThreshColor)
-    #cv2.imshow('The Image',imgThreshColor)
-    #cv2.waitKey(0)
     imgThreshColor2 = imgThreshColor.copy()
-    #cv2.imshow('The Plate',imgThreshColor2)
-    #cv2.waitKey(0)
     listOfMatchingChars.sort(key = lambda matchingChar: matchingChar.intCenterX)        # sort chars from left to right
 
     for currentChar in listOfMatchingChars:                                         # for each char in plate
@@ -396,19 +385,7 @@ def recognizeCharsInPlate(imgThresh, listOfMatchingChars):
         imgROI = imgThreshColor[currentChar.intBoundingRectY : currentChar.intBoundingRectY + currentChar.intBoundingRectHeight,currentChar.intBoundingRectX : currentChar.intBoundingRectX + currentChar.intBoundingRectWidth]
         imgROI = cv2.copyMakeBorder(imgROI,8,8,8,8,cv2.BORDER_CONSTANT,value = [255,255,255])
 
-                # crop char out of threshold image    
-        #Image.fromarray(imgROI,'RGB').show()
-        #input('Press Enter to Continue....')
         imgROIResized = cv2.resize(imgROI, (RESIZED_CHAR_IMAGE_WIDTH, RESIZED_CHAR_IMAGE_HEIGHT),interpolation=cv2.INTER_LINEAR)           # resize image, this is necessary for char recognition
-        #print('The shape is :',imgROIResized.shape)
-        #Image.fromarray(imgROI,'RGB').show()
-        #input('Press Enter to Continue....')
-        """
-        response = str(input('Want to save the image: '))
-        if response == 'Y':
-            name = str(input('Enter the name: '))
-            cv2.imwrite(name, imgROIResized)
-        """
         img=np.reshape(imgROIResized,[1,64,64,3])
 
         classes=model.predict_classes(img)

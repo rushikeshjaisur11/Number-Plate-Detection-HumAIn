@@ -11,7 +11,7 @@ import json
 import urllib
 import pytesseract
 from PIL import Image
-# module level variables ##########################################################################
+# module level variables 
 SCALAR_BLACK = (0.0, 0.0, 0.0)
 SCALAR_WHITE = (255.0, 255.0, 255.0)
 SCALAR_YELLOW = (0.0, 255.0, 255.0)
@@ -20,10 +20,9 @@ SCALAR_RED = (0.0, 0.0, 255.0)
 
 showSteps = False
 
-###################################################################################################
 def main(image):
 
-    blnKNNTrainingSuccessful = utils.   DetectChars.loadCNNClassifier()         # attempt KNN training
+    blnKNNTrainingSuccessful = utils.DetectChars.loadCNNClassifier()         # attempt KNN training
 
     if blnKNNTrainingSuccessful == False:                               # if KNN training was not successful
         print("\nerror: KNN traning was not successful\n")               # show error message
@@ -65,12 +64,9 @@ def main(image):
 
         drawRedRectangleAroundPlate(imgOriginalScene, licPlate)             # draw red rectangle around plate
 
-      #  print("\nlicense plate read from image = " + licPlate.strChars + "\n")       # write license plate text to std out
-       # print("----------------------------------------")
-
         nplate = licPlate.strChars
       
-        writeLicensePlateCharsOnImage(imgOriginalScene, licPlate)           # write license plate text on the image
+       # writeLicensePlateCharsOnImage(imgOriginalScene, licPlate)           # write license plate text on the image
 
         cv2.imshow("imgOriginalScene", imgOriginalScene)                # re-show scene image
 
@@ -83,7 +79,7 @@ def main(image):
     return answer
 # end main
 
-###################################################################################################
+
 def drawRedRectangleAroundPlate(imgOriginalScene, licPlate):
 
     p2fRectPoints = cv2.boxPoints(licPlate.rrLocationOfPlateInScene)            # get 4 vertices of rotated rect
