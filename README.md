@@ -1,5 +1,22 @@
 # Number-Plate-Detection-HumAIn
 
+# **Introduction:**
+Given project is divided into two parts 
+
+1.Data Extraction and Model Generation :- 
+
+	In this step we extract dataset from the Indian_Number_plates.json file.
+	
+	We used VehicleDataDownload.ipynb jupyter notebook for downloading the vehicle images from the json file
+	
+	In Model generator foder we created a notebook named as model_generator.ipynb, this create a CNN model for the OCR.
+	
+2.Prediction 
+
+	In this step we creted a ImageDetect.py file that takes input from the user and output the predicted number plate of the vehicle.
+	
+	
+
 # **Softwares and Technology used :**
 - OpenCV 
 - PIL
