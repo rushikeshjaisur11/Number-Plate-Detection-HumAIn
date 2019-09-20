@@ -13,7 +13,7 @@ Given project is divided into two parts
 	
 2.Prediction 
 
-	In this step we creted a ImageDetect.py file that takes input from the user and output the predicted number plate of the vehicle.
+	In this step we creted a PlateRecognize.py file that takes input from the user and output the predicted number plate of the vehicle.
 	
 	
 
@@ -28,10 +28,10 @@ Given project is divided into two parts
 # **How to run program :**
 
 - Step 1.Open command line (in windows ) or Terminal 
-- Step 2.Run the command python ImageDetect.py
+- Step 2.Run the command python PlateRecognize.py
 - Step 3.Enter the file name ( image name ) with extension (ENTER Image Name if image in same directory else write dirname/imagename.extension) 
 - Step 4.Get the result
 - OR 
-- Step 1. Open ImageDetect.py in idle or any other IDE and run the program
+- Step 1. Open PlateRecognize.py in idle or any other IDE and run the program
 - Step 2. Enter image name (ENTER Image Name if image in same directory else write dirname/imagename.extension)
 - Step 3. Get the result
