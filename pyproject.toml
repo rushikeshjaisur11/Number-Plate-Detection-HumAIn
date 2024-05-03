@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "number-plate-detection-humain-master"
+version = "0.1.0"
+description = ""
+authors = ["Rushi"]
+readme = "README.md"
+packages = [{include = "number_plate_detection_humain_master"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+tensorflow = "1.14"
+opencv-python = "^4.9.0.80"
+pytesseract = "^0.3.10"
+imutils = "^0.5.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

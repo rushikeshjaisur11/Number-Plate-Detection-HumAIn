@@ -4,6 +4,7 @@ import  imutils
 import pytesseract
 from PIL import Image
 # Read the image file
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 a = str(input('Enter File Name: '))
 image = cv2.imread(a)
 
